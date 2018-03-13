@@ -1,12 +1,16 @@
 package draws.flatfigures;
 
+import drawer.Options;
 import draws.Figure;
 
 import java.awt.*;
 
 public abstract class FlatFigure extends Figure {
 
-    public FlatFigure() {    }
+    public FlatFigure() {
+        setPenColor(Options.getPen().getBackground());
+        setFillColor(Options.getFill().getBackground());
+        setPenWidth(Options.getPenWidth());  }
 
     private Color fillColor = Color.white;
 

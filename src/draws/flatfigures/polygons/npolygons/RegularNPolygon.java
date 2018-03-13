@@ -3,25 +3,28 @@ package draws.flatfigures.polygons.npolygons;
 import draws.flatfigures.polygons.Polygon;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
+//import java.util.List;
 
-public class RegularNPolygon extends Polygon {
+public class RegularNPolygon extends Polygon{
 
     protected int N;
+    public RegularNPolygon(ArrayList<Point>pp){
+        super(pp);
+    }
 
-    public RegularNPolygon(Point... p) {
+    public RegularNPolygon(Point... p){
         super(p);
     }
-
-    public RegularNPolygon(Point center, Point p1, int n) {
+    public RegularNPolygon(Point center, Point p1, int n){
+        //System.out.println(RegularNPolygon.getPolygonPoints(center, p1, n)+"hi");
         super(RegularNPolygon.getPolygonPoints(center, p1, n));
-        setTheCenter(center);
-        N = n;
-    }
 
+        setTheCenter(center);
+        N=n;
+    }
     private static java.util.ArrayList<Point> getPolygonPoints(Point theCenter, Point pointOnCircle, int sideNum) {
-        ArrayList<Point> points = new ArrayList<>();
+        ArrayList<Point> points = new ArrayList<>(sideNum + 1);
 
         double radius = Math.sqrt(Math.pow((pointOnCircle.x) - theCenter.x, 2) + Math.pow(pointOnCircle.y - theCenter.y, 2));
         double z;
@@ -37,21 +40,18 @@ public class RegularNPolygon extends Polygon {
                     theCenter.y - (int) (Math.sin(z / 180 * Math.PI) * radius)));
             z = z + angle;
         }
+        System.out.println(points);
         return points;
     }
-
     @Override
 
     public void draw(Graphics2D g2d) {
         super.draw(g2d);
-        g2d.rotate(Math.toDegrees(30));
-        g2d.drawOval(50, 50, 100, 150);
-        g2d.rotate(Math.toDegrees(-30));
     }
 
     @Override
     public void move() {
-// TODO implement here
+        // TODO implement here
     }
 
 }

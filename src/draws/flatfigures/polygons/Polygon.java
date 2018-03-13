@@ -13,6 +13,7 @@ public class Polygon extends FlatFigure {
     public Polygon(Point[] p) {
         this();
         arrayOfPoints = new ArrayList(Arrays.asList(p));
+        arrayOfPoints.add(arrayOfPoints.get(0));
     }
     public Polygon(ArrayList<Point>pp){
         this();
@@ -21,9 +22,7 @@ public class Polygon extends FlatFigure {
     }
 
     public Polygon(){
-        setPenColor(Options.getPen().getBackground());
-        setFillColor(Options.getFill().getBackground());
-        setPenWidth(Options.getPenWidth());
+        super();
     }
 
     public  ArrayList<Point> getArrayOfPoints() {
@@ -43,12 +42,18 @@ public class Polygon extends FlatFigure {
 
     @Override
     public void draw(Graphics2D g2d) {
-        g2d.setColor(getPenColor());
-        g2d.setStroke(new BasicStroke(getPenWidth()));
-        for (int i=0; i<arrayOfPoints.size() - 1; i++){
-            //g2d.setStroke(new BasicStroke(getPenWidth()));
-            g2d.drawLine(arrayOfPoints.get(i).x, arrayOfPoints.get(i).y, arrayOfPoints.get(i+1).x, arrayOfPoints.get(i+1).y);
+        int nPoints = arrayOfPoints.size();
+        int[] xPoints = new int[nPoints];
+        int[] yPoints = new int[nPoints];
+        for (int i=0; i<arrayOfPoints.size(); i++){
+            xPoints[i]=arrayOfPoints.get(i).x;
+            yPoints[i]=arrayOfPoints.get(i).y;
         }
+        g2d.setColor(getFillColor());
+        g2d.fillPolygon(xPoints, yPoints, nPoints);
+        g2d.setStroke(new BasicStroke(getPenWidth()));
+        g2d.setColor(getPenColor());
+        g2d.drawPolygon(xPoints, yPoints, nPoints);
         g2d.setStroke(new BasicStroke(1));
         for (int i=0; i<arrayOfPoints.size(); i++){
             g2d.setColor(Color.black);

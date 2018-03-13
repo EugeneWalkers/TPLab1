@@ -19,7 +19,7 @@ public class Tools extends JPanel {
         buttons.add(new JRadioButtons("Rectangle", 3));
         buttons.add(new JRadioButtons("Diamond", 3));
         buttons.add(new JRadioButtons("Ellipse", 3));
-        buttons.add(new JRadioButtons("Circle", 3));
+        buttons.add(new JRadioButtons("Circle", 2));
         buttons.add(new JRadioButtons("Polygon", 3));
         buttons.add(new JRadioButtons("Parallelogramm", 3));
         buttons.add(new JRadioButtons("Isosceless Triangle", 3));
