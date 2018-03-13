@@ -12,6 +12,8 @@ public abstract class FlatFigure extends Figure {
 
     private Point leftCornerPoint;
 
+    private Point fillPoint;
+
     private int width;
 
     private int height;
@@ -56,5 +58,13 @@ public abstract class FlatFigure extends Figure {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public Point getFillPoint() {
+        return fillPoint;
+    }
+
+    public void setFillPoint(Point fillPoint) {
+        this.fillPoint = fillPoint;
     }
 }

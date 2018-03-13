@@ -29,7 +29,7 @@ public class Paint extends JLabel {
     static ArrayList<Point> points = new ArrayList<>();
     int ourFigure;
     boolean isMovingRightNow = false;
-    int N;
+    int N = 3;
 
     public Paint() {
         super();
@@ -47,6 +47,9 @@ public class Paint extends JLabel {
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
                 if (Options.dr.isSelected()) {
+                    if (k == 9){
+                        counter = N;
+                    }
                     points.add(new Point(e.getX(), e.getY()));
                     if (points.size() == counter) {
                         Point p1 = points.get(0);
@@ -183,9 +186,17 @@ public class Paint extends JLabel {
                         Point oldCenter = Window.getFigures().get(ourFigure).getTheCenter();
                         int dx = newCenter.x - oldCenter.x;
                         int dy = newCenter.y - oldCenter.y;
-                        for (int i = 0; i < Window.getFigures().get(ourFigure).getArrayOfPoints().size() - 1; i++) {
-                            Window.getFigures().get(ourFigure).getArrayOfPoints().get(i).x += dx;
-                            Window.getFigures().get(ourFigure).getArrayOfPoints().get(i).y += dy;
+                        if (Window.getFigures().get(ourFigure).getArrayOfPoints().size() > 2){
+                            for (int i = 0; i < Window.getFigures().get(ourFigure).getArrayOfPoints().size() - 1; i++) {
+                                Window.getFigures().get(ourFigure).getArrayOfPoints().get(i).x += dx;
+                                Window.getFigures().get(ourFigure).getArrayOfPoints().get(i).y += dy;
+                            }
+                        }
+                        else{
+                            for (int i = 0; i < Window.getFigures().get(ourFigure).getArrayOfPoints().size(); i++) {
+                                Window.getFigures().get(ourFigure).getArrayOfPoints().get(i).x += dx;
+                                Window.getFigures().get(ourFigure).getArrayOfPoints().get(i).y += dy;
+                            }
                         }
                         Window.getFigures().get(ourFigure).setTheCenter(newCenter);
                         ourFigure = -1;
@@ -208,7 +219,18 @@ public class Paint extends JLabel {
                             break;
                         }
                     }
-                    counter = Tools.buttons.get(k).getCountOfClicks();
+                    if (k == 9){
+                        String numb = JOptionPane.showInputDialog(null, "Введите количество углов:");
+                        if ("".equals(numb)){
+                            counter = N = 3;
+                        }
+                        else{
+                            counter = N = Math.max(3, Integer.parseInt(numb));
+                        }
+                    }
+                    else{
+                        counter = Tools.buttons.get(k).getCountOfClicks();
+                    }
                 } else if (Options.mov.isSelected()) {
                     setCursor(Cursor.getDefaultCursor());
                 }
@@ -224,7 +246,12 @@ public class Paint extends JLabel {
                         break;
                     }
                 }
-                counter = Tools.buttons.get(k).getCountOfClicks();
+                if (k == 9){
+                   counter = N;
+                }
+                else{
+                    counter = Tools.buttons.get(k).getCountOfClicks();
+                }
             }
 
         });
