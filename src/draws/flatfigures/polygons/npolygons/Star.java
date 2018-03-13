@@ -75,8 +75,8 @@ public class Star extends RegularNPolygon{
     }
 
     @Override
-    public void move(){
-
+    public void move(Point endPoint){
+        super.move(endPoint);
     }
 
 }

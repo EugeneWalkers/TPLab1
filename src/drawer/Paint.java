@@ -11,6 +11,7 @@ import draws.flatfigures.polygons.quadrilaterals.Rectangle;
 import draws.flatfigures.polygons.triangles.IsoscelesRectangularTriangle;
 import draws.flatfigures.polygons.triangles.IsoscelesTriangle;
 import draws.flatfigures.polygons.triangles.RectangularTriangle;
+import draws.lines.BrokenLine;
 import draws.lines.Line;
 import draws.lines.Ray;
 import draws.lines.Segment;
@@ -47,7 +48,7 @@ public class Paint extends JLabel {
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
                 if (Options.dr.isSelected()) {
-                    if (k == 9) {
+                    if (k == 9 || k == 14) {
                         counter = N;
                     }
                     points.add(new Point(e.getX(), e.getY()));
@@ -164,6 +165,9 @@ public class Paint extends JLabel {
                                 y1 = b32 * Math.sqrt((a12 * a12 + b12 * b12) / (a32 * a32 + b32 * b32)) + (double) p2.y;
                                 Window.getFigures().add(new IsoscelesRectangularTriangle(p1, p2, new Point((int) Math.round(x1), (int) Math.round(y1))));
                                 break;
+                            case 14:
+                                Window.getFigures().add(new BrokenLine(new ArrayList<>(points)));
+                                break;
                             default:
                                 break;
                         }
@@ -195,21 +199,7 @@ public class Paint extends JLabel {
                 } else if (Options.mov.isSelected()) {
                     if (isMovingRightNow) {
                         Point newCenter = new Point(e.getX(), e.getY());
-                        Point oldCenter = Window.getFigures().get(ourFigure).getTheCenter();
-                        int dx = newCenter.x - oldCenter.x;
-                        int dy = newCenter.y - oldCenter.y;
-                        if (Window.getFigures().get(ourFigure).getArrayOfPoints().size() > 2) {
-                            for (int i = 0; i < Window.getFigures().get(ourFigure).getArrayOfPoints().size() - 1; i++) {
-                                Window.getFigures().get(ourFigure).getArrayOfPoints().get(i).x += dx;
-                                Window.getFigures().get(ourFigure).getArrayOfPoints().get(i).y += dy;
-                            }
-                        } else {
-                            for (int i = 0; i < Window.getFigures().get(ourFigure).getArrayOfPoints().size(); i++) {
-                                Window.getFigures().get(ourFigure).getArrayOfPoints().get(i).x += dx;
-                                Window.getFigures().get(ourFigure).getArrayOfPoints().get(i).y += dy;
-                            }
-                        }
-                        Window.getFigures().get(ourFigure).setTheCenter(newCenter);
+                        Window.getFigures().get(ourFigure).move(newCenter);
                         ourFigure = -1;
                         isMovingRightNow = false;
                         repaint();
@@ -230,7 +220,7 @@ public class Paint extends JLabel {
                             break;
                         }
                     }
-                    if (k == 9) {
+                    if (k == 9 || k == 14) {
                         String numb = JOptionPane.showInputDialog(null, "Введите количество углов:");
                         if (numb != null) {
                             if ("".equals(numb)) {

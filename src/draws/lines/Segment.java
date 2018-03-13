@@ -10,11 +10,12 @@ public class Segment extends Figure {
     protected Point finishPoint;
 
     public Segment() {
+        setPenColor(Options.getPen().getBackground());
+        setPenWidth(Options.getPenWidth());
     }
 
     public Segment(Point p1, Point p2) {
-        setPenColor(Options.getPen().getBackground());
-        setPenWidth(Options.getPenWidth());
+        this();
         setTheCenter(new Point((p1.x + p2.x) / 2, (p1.y + p2.y) / 2));
         arrayOfPoints.add(p1);
         arrayOfPoints.add(p2);
@@ -32,16 +33,23 @@ public class Segment extends Figure {
         g2d.setColor(Color.red);
         g2d.fillOval(getTheCenter().x - 3, getTheCenter().y - 3, 6, 6);
         g2d.setColor(Color.black);
-        g2d.drawOval(arrayOfPoints.get(0).x-2, arrayOfPoints.get(0).y-2, 4, 4);
-        g2d.drawOval(arrayOfPoints.get(1).x-2, arrayOfPoints.get(1).y-2, 4, 4);
+        g2d.drawOval(arrayOfPoints.get(0).x - 2, arrayOfPoints.get(0).y - 2, 4, 4);
+        g2d.drawOval(arrayOfPoints.get(1).x - 2, arrayOfPoints.get(1).y - 2, 4, 4);
         g2d.setColor(Color.blue);
-        g2d.fillOval(arrayOfPoints.get(0).x-2, arrayOfPoints.get(0).y-2, 4, 4);
-        g2d.fillOval(arrayOfPoints.get(1).x-2, arrayOfPoints.get(1).y-2, 4, 4);
+        g2d.fillOval(arrayOfPoints.get(0).x - 2, arrayOfPoints.get(0).y - 2, 4, 4);
+        g2d.fillOval(arrayOfPoints.get(1).x - 2, arrayOfPoints.get(1).y - 2, 4, 4);
     }
 
     @Override
-    public void move() {
-        // TODO implement here
+    public void move(Point endPoint) {
+        Point oldCenter = getTheCenter();
+        int dx = endPoint.x - oldCenter.x;
+        int dy = endPoint.y - oldCenter.y;
+        for (int i = 0; i < getArrayOfPoints().size(); i++) {
+            getArrayOfPoints().get(i).x += dx;
+            getArrayOfPoints().get(i).y += dy;
+        }
+        setTheCenter(endPoint);
     }
 
 

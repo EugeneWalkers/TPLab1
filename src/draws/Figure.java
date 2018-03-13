@@ -22,9 +22,7 @@ public abstract class Figure extends drawer.Paint{
 
     public abstract void draw(Graphics2D g2d);
 
-    public void move() {
-        // TODO implement here
-    }
+    public abstract void move(Point endPoint);
 
     public Point getLocation() {
         return theCenter;

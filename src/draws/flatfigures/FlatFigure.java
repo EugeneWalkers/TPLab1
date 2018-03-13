@@ -28,8 +28,15 @@ public abstract class FlatFigure extends Figure {
     }
 
     @Override
-    public void move() {
-        // TODO implement here
+    public void move(Point endPoint) {
+        Point oldCenter = getTheCenter();
+        int dx = endPoint.x - oldCenter.x;
+        int dy = endPoint.y - oldCenter.y;
+        for (int i = 0; i < getArrayOfPoints().size() - 1; i++) {
+            getArrayOfPoints().get(i).x += dx;
+            getArrayOfPoints().get(i).y += dy;
+        }
+        setTheCenter(endPoint);
     }
 
     public Color getFillColor() {

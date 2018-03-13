@@ -18,8 +18,8 @@ public class Parallelogram extends Polygon {
     }
 
     @Override
-    public void move() {
-        // TODO implement here
+    public void move(Point endPoint) {
+        super.move(endPoint);
     }
 
 }

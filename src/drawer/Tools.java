@@ -25,6 +25,7 @@ public class Tools extends JPanel {
         buttons.add(new JRadioButtons("Isosceless Triangle", 3));
         buttons.add(new JRadioButtons("Rectangular Triangle", 3));
         buttons.add(new JRadioButtons("Isosceless Rectangular Triangle", 3));
+        buttons.add(new JRadioButtons("Broken Line", 3));
         addComponents();
         setClicks();
         setBorder(BorderFactory.createLineBorder(Color.BLUE));

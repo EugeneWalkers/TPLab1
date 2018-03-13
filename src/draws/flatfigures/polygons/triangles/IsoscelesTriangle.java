@@ -16,8 +16,9 @@ public class IsoscelesTriangle extends Polygon {
         super.draw(g2d);
     }
 
-    public void move() {
-        // TODO implement here
+    @Override
+    public void move(Point endPoint) {
+        super.move(endPoint);
     }
 
 }
