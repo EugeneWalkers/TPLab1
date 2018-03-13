@@ -1,6 +1,10 @@
 package draws.flatfigures.polygons.npolygons;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.PathIterator;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 public class Star extends RegularNPolygon{
@@ -67,6 +71,7 @@ public class Star extends RegularNPolygon{
     @Override
     public void draw(Graphics2D g2d) {
         super.draw(g2d);
+
     }
 
     @Override

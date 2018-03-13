@@ -14,11 +14,13 @@ public class Polygon extends FlatFigure {
         this();
         arrayOfPoints = new ArrayList(Arrays.asList(p));
         arrayOfPoints.add(arrayOfPoints.get(0));
+        setTheCenter(arrayOfPoints.get(0));
     }
     public Polygon(ArrayList<Point>pp){
         this();
         arrayOfPoints = pp;
         arrayOfPoints.add(arrayOfPoints.get(0));
+        setTheCenter(arrayOfPoints.get(0));
     }
 
     public Polygon(){
