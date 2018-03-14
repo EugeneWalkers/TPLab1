@@ -3,6 +3,7 @@ package drawer;
 import draws.Figure;
 import draws.flatfigures.circles.Circle;
 import draws.flatfigures.circles.Ellipse;
+import draws.flatfigures.polygons.Polygon;
 import draws.flatfigures.polygons.npolygons.RegularNPolygon;
 import draws.flatfigures.polygons.npolygons.Star;
 import draws.flatfigures.polygons.quadrilaterals.Diamond;
@@ -56,7 +57,6 @@ public class Paint extends JLabel {
                         Point p1 = points.get(0);
                         Point p2 = points.get(1);
                         Point p3 = new Point();
-                        double a12, a21, a23, a32, b12, b21, b23, b32, x1, y1;
                         if (Tools.buttons.get(k).getCountOfClicks() > 2) {
                             p3 = points.get(2);
                         }
@@ -72,47 +72,28 @@ public class Paint extends JLabel {
                                 break;
                             case 3:
                                 String temp = JOptionPane.showInputDialog(null, "Введите количество углов:");
-                                if (temp != null) {
-                                    if ("".equals(temp)) {
-                                        N = 3;
-                                    } else {
-                                        N = Math.max(3, Integer.parseInt(temp));
-                                    }
-                                    Window.getFigures().add(new Star(p1, p2, N));
+                                if ("".equals(temp)) {
+                                    N = 3;
+                                } else {
+                                    N = Math.max(3, Integer.parseInt(temp));
                                 }
+                                Window.getFigures().add(new Star(p1, p2, N));
                                 break;
                             case 4:
                                 temp = JOptionPane.showInputDialog(null, "Введите количество углов:");
-                                if (temp != null) {
-                                    if ("".equals(temp)) {
-                                        N = 3;
-                                    } else {
-                                        N = Math.max(3, Integer.parseInt(temp));
-                                    }
-                                    Window.getFigures().add(new RegularNPolygon(p1, p2, N));
+                                if ("".equals(temp)) {
+                                    N = 3;
+                                } else {
+                                    N = Math.max(3, Integer.parseInt(temp));
                                 }
+                                Window.getFigures().add(new RegularNPolygon(p1, p2, N));
                                 break;
                             case 5:
-                                b21 = p2.y - p1.y;
-                                a21 = p2.x - p1.x;
-                                if (p1.x != p2.x) {
-                                    x1 = -p3.y * b21 / a21 + p2.y * b21 / a21 + p2.x;
-                                    y1 = p3.y;
-                                } else {
-                                    y1 = -p3.x * a21 / b21 + p2.y * a21 / b21 + p2.y;
-                                    x1 = p3.y;
-                                }
-
-                                Window.getFigures().add(new Rectangle(p1, p2, new Point((int) Math.round(x1), (int) Math.round(y1))));
+                                Window.getFigures().add(Rectangle.createRectangle(p1,p2,p3));
                                 break;
                             case 6:
-                                a12 = p1.x - p2.x;
-                                a32 = p3.x - p2.x;
-                                b12 = p1.y - p2.y;
-                                b32 = p3.y - p2.y;
-                                double x = a32 * Math.sqrt((a12 * a12 + b12 * b12) / (a32 * a32 + b32 * b32)) + (double) p2.x;
-                                double y = b32 * Math.sqrt((a12 * a12 + b12 * b12) / (a32 * a32 + b32 * b32)) + (double) p2.y;
-                                Window.getFigures().add(new Diamond(p1, p2, new Point((int) Math.round(x), (int) Math.round(y))));
+
+                                Window.getFigures().add(Diamond.createDiamond(p1,p2,p3));
                                 break;
                             case 7:
                                 Window.getFigures().add(new Ellipse(p1, p2, p3));
@@ -121,49 +102,19 @@ public class Paint extends JLabel {
                                 Window.getFigures().add(new Circle(p1, p2));
                                 break;
                             case 9:
-                                Window.getFigures().add(new draws.flatfigures.polygons.Polygon(new ArrayList<>(points)));
+                                Window.getFigures().add(new Polygon(new ArrayList<>(points)));
                                 break;
                             case 10:
                                 Window.getFigures().add(new Parallelogram(p1, p2, p3));
                                 break;
                             case 11:
-                                a12 = p1.x - p2.x;
-                                a32 = p3.x - p2.x;
-                                b12 = p1.y - p2.y;
-                                b32 = p3.y - p2.y;
-                                x1 = a32 * Math.sqrt((a12 * a12 + b12 * b12) / (a32 * a32 + b32 * b32)) + (double) p2.x;
-                                y1 = b32 * Math.sqrt((a12 * a12 + b12 * b12) / (a32 * a32 + b32 * b32)) + (double) p2.y;
-                                Window.getFigures().add(new IsoscelesTriangle(p1, p2, new Point((int) Math.round(x1), (int) Math.round(y1))));
+                                Window.getFigures().add(IsoscelesTriangle.createIsoscelesTriangle(p1, p2, p3));
                                 break;
                             case 12:
-                                b21 = p2.y - p1.y;
-                                a21 = p2.x - p1.x;
-                                if (p1.x != p2.x) {
-                                    x1 = -p3.y * b21 / a21 + p2.y * b21 / a21 + p2.x;
-                                    y1 = p3.y;
-                                } else {
-                                    y1 = -p3.x * a21 / b21 + p2.y * a21 / b21 + p2.y;
-                                    x1 = p3.y;
-                                }
-                                Window.getFigures().add(new RectangularTriangle(p1, p2, new Point((int) Math.round(x1), (int) Math.round(y1))));
+                                Window.getFigures().add(RectangularTriangle.createRetangulaTriangle(p1,p2,p3));
                                 break;
                             case 13:
-                                b21 = p2.y - p1.y;
-                                a21 = p2.x - p1.x;
-                                if (p1.x != p2.x) {
-                                    x1 = -p3.y * b21 / a21 + p2.y * b21 / a21 + p2.x;
-                                    y1 = p3.y;
-                                } else {
-                                    y1 = -p3.x * a21 / b21 + p2.y * a21 / b21 + p2.y;
-                                    x1 = p3.y;
-                                }
-                                a12 = p1.x - p2.x;
-                                a32 = x1 - p2.x;
-                                b12 = p1.y - p2.y;
-                                b32 = y1 - p2.y;
-                                x1 = a32 * Math.sqrt((a12 * a12 + b12 * b12) / (a32 * a32 + b32 * b32)) + (double) p2.x;
-                                y1 = b32 * Math.sqrt((a12 * a12 + b12 * b12) / (a32 * a32 + b32 * b32)) + (double) p2.y;
-                                Window.getFigures().add(new IsoscelesRectangularTriangle(p1, p2, new Point((int) Math.round(x1), (int) Math.round(y1))));
+                                Window.getFigures().add(IsoscelesRectangularTriangle.createIsoscelesRectangularTriangle(p1, p2, p3));
                                 break;
                             case 14:
                                 Window.getFigures().add(new BrokenLine(new ArrayList<>(points)));
