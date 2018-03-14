@@ -47,11 +47,7 @@ public class Options extends JPanel {
         dr.setSelected(true);
         setButtons();
         addComponents();
-        //Window.getFigures().add(new Diamond(new Point(0, 0), new Point(8,0), new Point(7,1)));
-        //System.out.println(new Rectangle(new Point(50, 50), new Point(100, 100)).getNumberOfClicks());
-        //System.out.println(new Diamond(new Point(50, 50), new Point(200, 200), new Point(150, 200)).getNumberOfClicks());
-        //Window.getFigures().add(new Parallelogram(new Point(100, 100), new Point(200, 200), new Point(150, 200)));
-        setBorder(BorderFactory.createLineBorder(Color.RED));
+        setBorder(BorderFactory.createStrokeBorder(new BasicStroke(2), Color.black));
     }
 
     public void addComponents(){

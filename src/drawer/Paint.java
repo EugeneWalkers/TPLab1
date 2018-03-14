@@ -42,7 +42,7 @@ public class Paint extends JLabel {
         });
         setOpaque(true);
         setBackground(Color.white);
-        setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        setBorder(BorderFactory.createStrokeBorder(new BasicStroke(2), Color.black));
         addMouseListener(new MouseAdapter() {
 
             @Override

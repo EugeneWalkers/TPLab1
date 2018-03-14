@@ -28,7 +28,7 @@ public class Tools extends JPanel {
         buttons.add(new JRadioButtons("Broken Line", 3));
         addComponents();
         setClicks();
-        setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        setBorder(BorderFactory.createStrokeBorder(new BasicStroke(2), Color.black));
     }
 
     public void addComponents(){
