@@ -1,21 +1,21 @@
 package drawer;
 
 import draws.Figure;
-import draws.flatfigures.circles.Circle;
-import draws.flatfigures.circles.Ellipse;
-import draws.flatfigures.polygons.Polygon;
-import draws.flatfigures.polygons.npolygons.RegularNPolygon;
-import draws.flatfigures.polygons.npolygons.Star;
-import draws.flatfigures.polygons.quadrilaterals.Diamond;
-import draws.flatfigures.polygons.quadrilaterals.Parallelogram;
-import draws.flatfigures.polygons.quadrilaterals.Rectangle;
-import draws.flatfigures.polygons.triangles.IsoscelesRectangularTriangle;
-import draws.flatfigures.polygons.triangles.IsoscelesTriangle;
-import draws.flatfigures.polygons.triangles.RectangularTriangle;
-import draws.lines.BrokenLine;
-import draws.lines.Line;
-import draws.lines.Ray;
-import draws.lines.Segment;
+import draws.Circle;
+import draws.Ellipse;
+import draws.Polygon;
+import draws.RegularNPolygon;
+import draws.Star;
+import draws.Diamond;
+import draws.Parallelogram;
+import draws.Rectangle;
+import draws.IsoscelesRectangularTriangle;
+import draws.IsoscelesTriangle;
+import draws.RectangularTriangle;
+import draws.BrokenLine;
+import draws.Line;
+import draws.Ray;
+import draws.Segment;
 
 import javax.swing.*;
 import java.awt.*;

@@ -3,7 +3,7 @@ package draws;
 import java.awt.*;
 import java.util.ArrayList;
 
-public abstract class Figure extends drawer.Paint{
+public abstract class Figure{
 
 
     public ArrayList<Point> getArrayOfPoints() {
